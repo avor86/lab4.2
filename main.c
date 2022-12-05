@@ -159,7 +159,7 @@ void SortA(int** A,int Arows)
     else
     {
         variant=0;
-        while(variant<1||variant>Arows+1)
+        while(variant<1||variant>Arows)
         {
             printf("Choose the row:");
             scanf("%d",&variant);
@@ -187,6 +187,7 @@ void SortA(int** A,int Arows)
             SortedA[i][j]=NewA[var];
         }
     }
+    system("CLS");
     printf("sorted matrix:");
     PrintMatrix(SortedA,Arows,Arows);
     system("pause");
@@ -223,8 +224,11 @@ int main()
     int Bcolumns=0;
     //--------------------------------------------------------------------------------------
     printf("The number of rows and columns of the matrix A");
-    printf("\nEnter number:");
-    scanf("%d",&Arows);
+    while(Arows<1)
+    {
+        printf("\nEnter number:");
+        scanf("%d",&Arows);
+    }
 
     A=(int**)calloc(Arows, sizeof(int*));
     if(A==NULL)
@@ -243,13 +247,17 @@ int main()
     }
     //--------------------------------------------------------------------------------------
     printf("The number of rows of the matrix B");
-    printf("\nEnter number:");
-    scanf("%d",&Brows);
-
+    while(Brows<1)
+    {
+        printf("\nEnter number:");
+        scanf("%d",&Brows);
+    }
     printf("The number of columns of the matrix B");
-    printf("\nEnter number:");
-    scanf("%d",&Bcolumns);
-
+    while(Bcolumns<1)
+    {
+        printf("\nEnter number:");
+        scanf("%d",&Bcolumns);
+    }
     B=(int**)calloc(Bcolumns, sizeof(int*));
     if(B==NULL)
     {
