@@ -128,7 +128,6 @@ void SortA(int** A,int Arows)
     {
         SortedA[i]=(int*)calloc(Arows, sizeof(int));
     }
-
     for(int i=0;i<Arows;i++)
     {
         for(int j=0;j<Arows;j++,var++)
@@ -136,16 +135,47 @@ void SortA(int** A,int Arows)
             NewA[var]=A[i][j];
         }
     }
-
-    for(int i=0;i<size;i++)
+    int variant=0;
+    while(variant<1||variant>2)
     {
-        for(int j=0;j<size;j++)
+        printf("1 - sort matrix A\n2 - sort row of matrix A\n Choose:");
+        scanf("%d",&variant);
+    }
+    if(variant==1)
+    {
+        for(int i=0;i<size;i++)
         {
-            if(NewA[j]>NewA[i])
+            for(int j=0;j<size;j++)
             {
-                var=NewA[i];
-                NewA[i]=NewA[j];
-                NewA[j]=var;
+                if(NewA[j]>NewA[i])
+                {
+                    var=NewA[i];
+                    NewA[i]=NewA[j];
+                    NewA[j]=var;
+                }
+            }
+        }
+    }
+    else
+    {
+        variant=0;
+        while(variant<1||variant>Arows+1)
+        {
+            printf("Choose the row:");
+            scanf("%d",&variant);
+        }
+        variant--;
+        variant=variant*Arows;
+        for(int i=variant;i<variant+Arows;i++)
+        {
+            for(int j=variant;j<variant+Arows;j++)
+            {
+                if(NewA[j]>NewA[i])
+                {
+                    var=NewA[i];
+                    NewA[i]=NewA[j];
+                    NewA[j]=var;
+                }
             }
         }
     }
@@ -256,13 +286,13 @@ int main()
         PrintMatrix(A,Arows,Arows);
         printf("\nMatrix B:\n");
         PrintMatrix(B,Brows,Bcolumns);
-        printf("\nChoose variant:\n 1 - Find the maximum and minimum element of matrix A above the main diagonal)");
+        printf("\nChoose variant:\n 1 - Find the maximum and minimum element of matrix A above the main diagonal");
         printf("\n 2 - Transporting matrix B");
         printf("\n 3 - Multiplication of matrices A*B");
         printf("\n 4 - Arrange all the elements of the matrix A in ascending order");
         printf("\n 5 - Displaying the sum of the elements of the rows of the matrix A and the columns of the matrix B");
         printf("\n 6 - Exit\n");
-        printf("\n");
+        printf("\nChoose:");
         scanf("%d", &WhatToDo);
         system("CLS");
     }
@@ -272,22 +302,22 @@ int main()
     }
     switch(WhatToDo)
     {
-    case 1:
-        MaxAndMinElemA(A,Arows);
-        break;
-    case 2:
-        TransB(B,Brows,Bcolumns);
-        break;
-    case 3:
-        MultAxB(A,Arows,B,Brows,Bcolumns);
-        break;
-    case 4:
-        SortA(A,Arows);
-        break;
-    case 5:
-        SumAandB(A,Arows,B,Brows,Bcolumns);
-        break;
-    }
+        case 1:
+            MaxAndMinElemA(A,Arows);
+            break;
+        case 2:
+            TransB(B,Brows,Bcolumns);
+            break;
+        case 3:
+            MultAxB(A,Arows,B,Brows,Bcolumns);
+            break;
+        case 4:
+            SortA(A,Arows);
+            break;
+        case 5:
+            SumAandB(A,Arows,B,Brows,Bcolumns);
+            break;
+        }
     }
     for (int i = 0; i < Arows; i++)
     {
