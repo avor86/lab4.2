@@ -38,18 +38,18 @@ void PrintMatrix(int ** matrix,int rows, int columns)
 }
 void MaxAndMinElemA(int ** matrix,int rows)
 {
-    int MaxElem,MinElem,time=1;
+    int MaxElem,MinElem,times=1;
     for(int i=0;i<rows;i++)
     {
         for(int j=0;j<rows;j++)
         {
             if(i<j)
             {
-                if(time==1)
+                if(times==1)
                 {
                     MaxElem=matrix[i][j];
                     MinElem=matrix[i][j];
-                    time=0;
+                    times=0;
                 }
                 else if(matrix[i][j]>MaxElem)
                 {
